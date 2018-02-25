@@ -9,8 +9,9 @@ var SHADOW_OFFSET = 10;
 var SHADOW_COLOR = 'rgba(0, 0, 0, 0.7)';
 
 // Рисует облако для вывода статистики
-var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, cloudHeight) {
+var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, cloudHeight, cloudColor) {
   var offset = 10;
+  ctx.fillStyle = cloudColor;
   ctx.beginPath();
   ctx.moveTo(cloudCoordinateX, cloudCoordinateY);
   ctx.lineTo(cloudCoordinateX + offset, cloudCoordinateY + cloudHeight / 2);
@@ -26,14 +27,12 @@ var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, c
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  ctx.fillStyle = SHADOW_COLOR;
   drawCloud(ctx,
       CLOUD_COORDINATE_X + SHADOW_OFFSET,
       CLOUD_COORDINATE_Y + SHADOW_OFFSET,
-      CLOUD_WIDTH, CLOUD_HEIGHT);
+      CLOUD_WIDTH, CLOUD_HEIGHT, SHADOW_COLOR);
 
-  ctx.fillStyle = CLOUD_COLOR;
   drawCloud(ctx,
       CLOUD_COORDINATE_X, CLOUD_COORDINATE_Y,
-      CLOUD_WIDTH, CLOUD_HEIGHT);
+      CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_COLOR);
 };
