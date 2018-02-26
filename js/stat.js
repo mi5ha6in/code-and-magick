@@ -4,9 +4,16 @@ var CLOUD_COORDINATE_X = 100;
 var CLOUD_COORDINATE_Y = 10;
 var CLOUD_WIDTH = 420;
 var CLOUD_HEIGHT = 270;
-var CLOUD_COLOR = '#ffffff';
+var CLOUD_COLOR = '#fff';
 var SHADOW_OFFSET = 10;
 var SHADOW_COLOR = 'rgba(0, 0, 0, 0.7)';
+
+var FONT_FAMILY = 'PT Mono';
+var FONT_SIZE = '16px';
+var FONT_COLOR = '#000';
+var TEXT_OFFSET_X = 20;
+var TEXT_OFFSET_Y = 40;
+var VICTORY_TEXT = 'Ура вы победили!\nСписок результатов:';
 
 // Рисует облако для вывода статистики
 var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, cloudHeight, cloudColor) {
@@ -26,6 +33,18 @@ var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, c
   ctx.fill();
 };
 
+// Выводит текст на канвас
+var renderText = function (ctx, fontFamily, size, color, text) {
+  ctx.fillStyle = color;
+  ctx.font = size + fontFamily;
+  text.split('\n').forEach(function (line, i) {
+    ctx.fillText(line,
+        CLOUD_COORDINATE_X
+        + TEXT_OFFSET_X, CLOUD_COORDINATE_Y
+        + TEXT_OFFSET_Y + 20 * i);
+  });
+};
+
 window.renderStatistics = function (ctx, names, times) {
   drawCloud(ctx,
       CLOUD_COORDINATE_X + SHADOW_OFFSET,
@@ -35,4 +54,6 @@ window.renderStatistics = function (ctx, names, times) {
   drawCloud(ctx,
       CLOUD_COORDINATE_X, CLOUD_COORDINATE_Y,
       CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_COLOR);
+
+  renderText(ctx, FONT_FAMILY, FONT_SIZE, FONT_COLOR, VICTORY_TEXT);
 };
