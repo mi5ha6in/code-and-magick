@@ -15,6 +15,8 @@ var TEXT_OFFSET_X = 20;
 var TEXT_OFFSET_Y = 40;
 var VICTORY_TEXT = 'Ура вы победили!\nСписок результатов:';
 
+var MAX_HEIGHT_HISTOGRAM = 150;
+
 // Возвращает наибльшее число из массива
 // !Предпологается, что массив состоит из чисел!
 var getMaxElementOfArray = function (array) {
@@ -64,6 +66,18 @@ var renderText = function (ctx, fontFamily, size, color, text) {
   });
 
 };
+
+// Рисует гистограмму
+var drawHistogram = function (times, names) {
+  var HISTOGRAM_COORDINATE_X = CLOUD_COORDINATE_X + 20;
+  var HISTOGRAM_COORDINATE_Y = 100;
+  var maxTime = getMaxElementOfArray (times);
+  var histogramProportionalCoefficient = MAX_HEIGHT_HISTOGRAM / maxTime;
+
+  for (i = 0; i < times.length; i++) {
+
+  }
+}
 
 window.renderStatistics = function (ctx, names, times) {
 
