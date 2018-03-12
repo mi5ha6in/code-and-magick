@@ -15,6 +15,26 @@ var TEXT_OFFSET_X = 20;
 var TEXT_OFFSET_Y = 40;
 var VICTORY_TEXT = 'Ура вы победили!\nСписок результатов:';
 
+// Возвращает наибльшее число из массива
+// !Предпологается, что массив состоит из чисел!
+var getMaxElementOfArray = function (array) {
+
+  if (array.length === 0) {
+    return -1;
+  }
+
+  var maxElement = array[0];
+
+  for (var i = 1; i < array.length; i++) {
+    if (maxElement < array[i]) {
+      maxElement = array[i];
+    }
+  }
+
+  return maxElement;
+};
+
+
 // Рисует облако для вывода статистики
 var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, cloudHeight, cloudColor) {
   var offset = 10;
@@ -39,13 +59,14 @@ var renderText = function (ctx, fontFamily, size, color, text) {
   ctx.font = size + fontFamily;
   text.split('\n').forEach(function (line, i) {
     ctx.fillText(line,
-        CLOUD_COORDINATE_X
-        + TEXT_OFFSET_X, CLOUD_COORDINATE_Y
-        + TEXT_OFFSET_Y + 20 * i);
+        CLOUD_COORDINATE_X + TEXT_OFFSET_X,
+        CLOUD_COORDINATE_Y + TEXT_OFFSET_Y + 20 * i);
   });
+
 };
 
 window.renderStatistics = function (ctx, names, times) {
+
   drawCloud(ctx,
       CLOUD_COORDINATE_X + SHADOW_OFFSET,
       CLOUD_COORDINATE_Y + SHADOW_OFFSET,
