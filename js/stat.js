@@ -68,16 +68,27 @@ var renderText = function (ctx, fontFamily, size, color, text) {
 };
 
 // Рисует гистограмму
-var drawHistogram = function (times, names) {
-  var HISTOGRAM_COORDINATE_X = CLOUD_COORDINATE_X + 20;
-  var HISTOGRAM_COORDINATE_Y = 100;
-  var maxTime = getMaxElementOfArray (times);
+var drawHistogram = function (ctx, times, names) {
+  var HISTOGRAM_PADDING_LEFT = 100;
+  var HISTOGRAM_PADDING_BOTTOM = 15;
+  var HISTOGRAM_OFFSET = 60;
+  var HISTOGRAM_COORDINATE_X = CLOUD_COORDINATE_X + HISTOGRAM_PADDING_LEFT;
+  var HISTOGRAM_COORDINATE_Y = CLOUD_HEIGHT - HISTOGRAM_PADDING_BOTTOM;
+  var HISTOGRAM_ITEM_WIDTH = 40;
+
+  var maxTime = getMaxElementOfArray(times);
   var histogramProportionalCoefficient = MAX_HEIGHT_HISTOGRAM / maxTime;
 
-  for (i = 0; i < times.length; i++) {
+  for (var i = 0; i < times.length; i++) {
+    var HISTOGRAM_ITEM_HEIGHT = -histogramProportionalCoefficient * times[i];
 
+    ctx.fillRect(
+        HISTOGRAM_COORDINATE_X + HISTOGRAM_OFFSET * i, HISTOGRAM_COORDINATE_Y,
+        HISTOGRAM_ITEM_WIDTH, HISTOGRAM_ITEM_HEIGHT);
+
+    ctx.fillText(names[i], HISTOGRAM_COORDINATE_X + HISTOGRAM_OFFSET * i, 95);
   }
-}
+};
 
 window.renderStatistics = function (ctx, names, times) {
 
@@ -91,4 +102,7 @@ window.renderStatistics = function (ctx, names, times) {
       CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_COLOR);
 
   renderText(ctx, FONT_FAMILY, FONT_SIZE, FONT_COLOR, VICTORY_TEXT);
+
+  drawHistogram(ctx, times, names);
+
 };
