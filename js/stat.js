@@ -12,7 +12,7 @@ var FONT_FAMILY = 'PT Mono';
 var FONT_SIZE = '16px';
 var FONT_COLOR = '#000';
 var TEXT_OFFSET_X = 20;
-var TEXT_OFFSET_Y = 40;
+var TEXT_OFFSET_Y = 35;
 var VICTORY_TEXT = 'Ура вы победили!\nСписок результатов:';
 
 var MAX_HEIGHT_HISTOGRAM = 150;
@@ -70,7 +70,7 @@ var renderText = function (ctx, fontFamily, size, color, text) {
 // Рисует гистограмму
 var drawHistogram = function (ctx, times, names) {
   var HISTOGRAM_PADDING_LEFT = 100;
-  var HISTOGRAM_PADDING_BOTTOM = 15;
+  var HISTOGRAM_PADDING_BOTTOM = 12;
   var HISTOGRAM_OFFSET = 60;
   var HISTOGRAM_COORDINATE_X = CLOUD_COORDINATE_X + HISTOGRAM_PADDING_LEFT;
   var HISTOGRAM_COORDINATE_Y = CLOUD_HEIGHT - HISTOGRAM_PADDING_BOTTOM;
