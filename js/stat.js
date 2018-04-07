@@ -36,6 +36,10 @@ var getMaxElementOfArray = function (array) {
   return maxElement;
 };
 
+//  Возвращает случайное число из диапазона
+var getRandomFloat = function (min, max) {
+  return Math.random() * (max - min) + min;
+};
 
 // Рисует облако для вывода статистики
 var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, cloudHeight, cloudColor) {
@@ -57,8 +61,8 @@ var drawCloud = function (ctx, cloudCoordinateX, cloudCoordinateY, cloudWidth, c
 
 // Выводит текст на канвас
 var renderText = function (ctx, fontFamily, size, color, text) {
-  ctx.fillStyle = color;
-  ctx.font = size + fontFamily;
+  ctx.fillStyle = color || '#000000';
+  ctx.font = (size + fontFamily) || 'bold 16px PT Mono';
   text.split('\n').forEach(function (line, i) {
     ctx.fillText(line,
         CLOUD_COORDINATE_X + TEXT_OFFSET_X,
@@ -80,6 +84,13 @@ var drawHistogram = function (ctx, times, names) {
   var histogramProportionalCoefficient = MAX_HEIGHT_HISTOGRAM / maxTime;
 
   for (var i = 0; i < times.length; i++) {
+
+    if (names[i] === 'Вы') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else {
+      ctx.fillStyle = 'rgba(0, 0, 255,' + getRandomFloat(0.2, 1).toFixed(1) + ')';
+    }
+
     var HISTOGRAM_ITEM_HEIGHT = -histogramProportionalCoefficient * times[i];
 
     ctx.fillRect(
