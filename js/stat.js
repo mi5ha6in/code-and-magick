@@ -87,6 +87,7 @@ var drawHistogram = function (ctx, times, names) {
         HISTOGRAM_ITEM_WIDTH, HISTOGRAM_ITEM_HEIGHT);
 
     ctx.fillText(names[i], HISTOGRAM_COORDINATE_X + HISTOGRAM_OFFSET * i, 85);
+    ctx.fillText(Math.round(times[i]), HISTOGRAM_COORDINATE_X + HISTOGRAM_OFFSET * i, 260);
   }
 };
 
