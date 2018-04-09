@@ -45,3 +45,16 @@ var EYES_COLORS =
   'yellow',
   'green',
 ];
+
+//  Возвращает случайное целое число из диапазона
+var randomInteger = function (min, max) {
+  var rand = min + Math.random() * (max + 1 - min);
+  rand = Math.floor(rand);
+  return rand;
+};
+
+var getFullName = function (arrayName, arrayLastName) {
+  var name = arrayName[randomInteger(0, arrayName.length - 1)];
+  var lastName = arrayLastName[randomInteger(0, arrayLastName.length - 1)];
+  return name + ' ' + lastName;
+};
