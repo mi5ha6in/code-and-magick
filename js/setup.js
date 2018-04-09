@@ -58,8 +58,17 @@ var getRandomArrayData = function (array) {
   return array[randomInteger(0, array.length - 1)]
 }
 
-var getFullName = function (arrayName, arrayLastName) {
-  var name = arrayName[randomInteger(0, arrayName.length - 1)];
-  var lastName = arrayLastName[randomInteger(0, arrayLastName.length - 1)];
-  return name + ' ' + lastName;
+//  Возвращает случайное имя
+var getRandomName = function (arrayName) {
+  return getRandomArrayData(arrayName);
+}
+
+//  Возвращает случайную фамилию
+var getRandomLastName = function (arrayLastName) {
+  return getRandomArrayData(arrayLastName);
+}
+
+//  Возвращает случайное полное имя
+var getRandomFullName = function (arrayName, arrayLastName) {
+  return getRandomName(arrayName) + ' ' + getRandomLastName(arrayLastName);
 };
