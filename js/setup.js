@@ -53,6 +53,11 @@ var randomInteger = function (min, max) {
   return rand;
 };
 
+//  Возвращает случайное значение из массива
+var getRandomArrayData = function (array) {
+  return array[randomInteger(0, array.length - 1)]
+}
+
 var getFullName = function (arrayName, arrayLastName) {
   var name = arrayName[randomInteger(0, arrayName.length - 1)];
   var lastName = arrayLastName[randomInteger(0, arrayLastName.length - 1)];
